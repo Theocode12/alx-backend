@@ -24,10 +24,11 @@ class Server:
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         """gets page"""
-        assert type(page) is int and type(page_size) is int and page > 0 and page_size > 0
+        assert type(page) is int and type(page_size)\
+            is int and page > 0 and page_size > 0
         start, stop = self.index_range(page, page_size)
         return self.dataset()[start:stop]
-    
+
     def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
         """return the starts and end index of a page"""
         stop = page * page_size
@@ -37,7 +38,7 @@ class Server:
     def get_hyper(self, page: int, page_size: int) -> Mapping:
         """returns a dictionary"""
         prev_page = page - 1 if page > 1 else None
-        total_pages = math.floor(len(self.dataset()) / page_size)  
+        total_pages = math.floor(len(self.dataset()) / page_size)
         next_page = page + 1 if page < total_pages else None
         page_dict = {'page_size': page_size, 'page': page,
                      'data': self.get_page(page, page_size),
