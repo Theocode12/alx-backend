@@ -46,7 +46,8 @@ class Server:
         certain rows are removed from the dataset, the user
         does not miss items from dataset when changing page.
         """
-
+        assert type(index) is int and type(page_size)\
+            is int and index >= 0 and page_size > 0
         assert index <= list(self.__indexed_dataset.keys())[-1]
         i = index
         data = []
