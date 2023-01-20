@@ -4,7 +4,7 @@ import math
 from typing import List, Tuple
 
 
-def index_range(self, page: int, page_size: int) -> Tuple[int, int]:
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
     """return the starts and end index of a page"""
     stop = page * page_size
     start = stop - page_size
