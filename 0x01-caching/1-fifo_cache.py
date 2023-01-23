@@ -11,7 +11,7 @@ class FIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Input data into the cache"""
-        if self.cache_data.get(key):
+        if self.cache_data.get(key) and item:
             self.fifo.remove(key)
             self.fifo.append(key)
         elif (len(self.fifo) < self.MAX_ITEMS) and key and item:
