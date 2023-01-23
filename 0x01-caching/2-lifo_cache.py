@@ -11,12 +11,12 @@ class LIFOCache(BaseCaching):
 
     def put(self, key, item):
         """Input data into the cache"""
-        if self.cache_data.get(key):
+        if self.cache_data.get(key) and item:
             self.lifo.remove(key)
             self.lifo.append(key)
-        elif (len(self.lifo) < self.MAX_ITEMS) and key:
+        elif (len(self.lifo) < self.MAX_ITEMS) and key and item:
             self.lifo.append(key)
-        elif key:
+        elif key and item:
             r_key = self.lifo.pop(-1)
             print("DISCARD: {}".format(r_key))
             del self.cache_data[r_key]
