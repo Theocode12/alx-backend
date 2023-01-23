@@ -52,6 +52,10 @@ class Server:
         i = index
         data = []
         while not self.__indexed_dataset.get(i):
+            if i > list(
+                    self.__indexed_dataset.keys()
+                    )[-1]:
+                break
             i += 1
         while True:
             if len(data) == page_size or i > list(
