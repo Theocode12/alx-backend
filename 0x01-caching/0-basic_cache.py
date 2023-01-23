@@ -7,7 +7,7 @@ class BasicCache(BaseCaching):
     """Base class for basic caching"""
     def put(self, key, item):
         """Put a key/value pair"""
-        if key:
+        if key and item:
             self.cache_data[key] = item
 
     def get(self, key):
