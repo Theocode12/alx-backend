@@ -13,8 +13,7 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-babel = Babel(app)
-
+babel = Babel(app, default_locale="en", default_timezone="UTC")
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -36,6 +35,7 @@ def before_request():
         g.user = get_user(user_id)
 
 
+@babel.localeselector
 def get_locale():
     """returns the locale"""
     lang = request.args.get("locale")
