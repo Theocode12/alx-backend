@@ -6,6 +6,7 @@ from flask_babel import Babel, _
 
 
 class Config(object):
+    """Config class"""
     LANGUAGES = ["en", "fr"]
 
 
@@ -15,6 +16,7 @@ babel = Babel(app)
 
 
 def get_locale():
+    """Returns current locale"""
     lang = request.args.get("locale")
     if lang and lang in Config.LANGUAGES:
         return lang
@@ -26,6 +28,7 @@ babel.init_app(app, locale_selector=get_locale)
 
 @app.route("/")
 def index():
+    """Index page"""
     return render_template("4-index.html")
 
 
