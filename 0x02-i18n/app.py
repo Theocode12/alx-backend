@@ -5,6 +5,7 @@ from flask import Flask, request, render_template, g
 from flask_babel import Babel, _
 from pytz import timezone, exceptions
 
+
 class Config(object):
     LANGUAGES = ["en", "fr"]
 
@@ -48,19 +49,18 @@ def get_locale():
 def get_timezone():
     """gets timezone information"""
     tz = request.args.get("timezone")
-    user = getattr(g, 'user', None)
-    user_tz = user.get('timezone')
+    user = getattr(g, "user", None)
+    user_tz = user.get("timezone")
     try:
         if tz and timezone(tz):
             return tz
         elif user and user_tz and timezone(user_tz):
             return user_tz
         else:
-            return 'UTC'
-        
+            return "UTC"
+
     except exceptions.UnknownTimeZoneError:
-        return 'UTC'
-        
+        return "UTC"
 
 
 babel.init_app(app, locale_selector=get_locale, timezone_selector=get_timezone)
