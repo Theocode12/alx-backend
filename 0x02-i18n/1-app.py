@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ Flask App"""
 
-from flask import Flask, request, render_template
+from flask import Flask, render_template
 from flask_babel import Babel
 
 
@@ -13,7 +13,7 @@ class Config(object):
 
 app = Flask(__name__)
 app.config.from_object(Config)
-babel = Babel(app)
+babel = Babel(app, default_locale="en", default_timezone="UTC")
 
 
 @app.route("/", strict_slashes=False)
@@ -23,4 +23,4 @@ def index() -> str:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
