@@ -8,6 +8,8 @@ from pytz import timezone, exceptions
 
 class Config(object):
     LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 app = Flask(__name__)
@@ -36,6 +38,7 @@ def before_request():
 
 
 def get_locale():
+    """Returns the current locale"""
     lang = request.args.get("locale")
     user = g.get("user")
 
@@ -68,6 +71,7 @@ babel.init_app(app, locale_selector=get_locale, timezone_selector=get_timezone)
 
 @app.route("/")
 def index():
+    """Index page"""
     return render_template("7-index.html")
 
 
